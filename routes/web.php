@@ -2,6 +2,8 @@
 
 // use Illuminate\Routing\Route;
 
+Route::post('/set-user-timezone', 'UserTimezoneController@setUserTimezone')->name('set-user-timezone');
+
 Route::redirect('/', '/login');
 Route::get(
     '/home',
