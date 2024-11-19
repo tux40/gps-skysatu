@@ -14,7 +14,7 @@
     }
 
     body {
-        background: #a1cded !important;
+        background: #a9d3de !important;
     }
 
     .navbar-light .navbar-nav .active>.nav-link,
@@ -37,7 +37,7 @@
     <div class="content">
         <div class="row">
             <iframe class="embed-responsive-item" src="{{ URL::to('/admin/getDashboard') }}"
-                style="position:absolute;top:28px;left:0;width:100%;height:96.7%; border: 0" allowfullscreen="allowfullscreen"
+                style="position:absolute;left:-10;width:100%;height:96.7%; border: 0" allowfullscreen="allowfullscreen"
                 frameborder="0"></iframe>
         </div>
     </div>

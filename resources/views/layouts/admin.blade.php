@@ -386,6 +386,11 @@
         sidebar.style.display='none'
     }
 </script>
+<script>  
+    setTimeout(function(){  
+        location.reload();  
+    },300000);  
+ </script> 
 @yield('scripts')
 
 </body>

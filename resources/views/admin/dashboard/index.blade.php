@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css') }}"/>
+    <!--<link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css') }}"/>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"/>
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.contextmenu.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.draw.css') }}"/>
@@ -237,7 +238,8 @@ top: 1%; width: 100%; height: 99%; z-index: 6; background-color: #000; opacity: 
 <script src="{{ asset('js/MeasureTool.min.js') }}"></script>
 <script src="{{ asset('js/cbpFWTabs.js') }}"></script>
 <script src="{{ asset('js/jquery-dateFormat.min.js') }}"></script>
-<script src="{{ asset('js/leaflet.js') }}"></script>
+<!--<script src="{{ asset('js/leaflet.js') }}"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script src="{{ asset('js/leaflet.rotatedMarker.js') }}"></script>
 <script src="{{ asset('js/leaflet.contextmenu.js') }}"></script>
 <script src="{{ asset('js/leaflet.draw.js') }}"></script>
