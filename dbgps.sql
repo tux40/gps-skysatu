@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2024 at 04:47 AM
+-- Generation Time: Nov 29, 2024 at 05:00 AM
 -- Server version: 10.6.20-MariaDB
 -- PHP Version: 8.3.14
 
@@ -20,6 +20,318 @@ SET time_zone = "+00:00";
 --
 -- Database: `skysatcotest_gpsskysatco_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `distributors`
+--
+
+CREATE TABLE `distributors` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `distributor_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `distributor_manager`
+--
+
+CREATE TABLE `distributor_manager` (
+  `distributor_id` int(10) UNSIGNED NOT NULL,
+  `manager_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `distributor_user`
+--
+
+CREATE TABLE `distributor_user` (
+  `distributor_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_alert_terminal`
+--
+
+CREATE TABLE `email_alert_terminal` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `terminal_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_destinations`
+--
+
+CREATE TABLE `email_destinations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_send_pertaminas`
+--
+
+CREATE TABLE `email_send_pertaminas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `ship_id` bigint(20) NOT NULL,
+  `history_ship_id` bigint(20) NOT NULL,
+  `last_seen_time` datetime NOT NULL,
+  `last_sent_destination` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `last_sent_status` varchar(191) NOT NULL,
+  `subject` varchar(191) NOT NULL,
+  `filename_chr` varchar(191) NOT NULL,
+  `content` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_terminal`
+--
+
+CREATE TABLE `email_terminal` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `terminal_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_user`
+--
+
+CREATE TABLE `email_user` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history_ships`
+--
+
+CREATE TABLE `history_ships` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `history_ids` varchar(191) NOT NULL,
+  `sin` varchar(191) DEFAULT NULL,
+  `region_name` varchar(191) DEFAULT NULL,
+  `receive_utc` datetime DEFAULT NULL,
+  `message_utc` datetime DEFAULT NULL,
+  `payload` text DEFAULT NULL,
+  `ota_message_size` varchar(191) DEFAULT NULL,
+  `ship_id` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `min` varchar(191) DEFAULT NULL,
+  `display_to_map` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(191) NOT NULL,
+  `payload` longtext NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `managers`
+--
+
+CREATE TABLE `managers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `manager_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manager_user`
+--
+
+CREATE TABLE `manager_user` (
+  `manager_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(191) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_access_tokens`
+--
+
+CREATE TABLE `oauth_access_tokens` (
+  `id` varchar(100) NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `client_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) DEFAULT NULL,
+  `scopes` text DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_auth_codes`
+--
+
+CREATE TABLE `oauth_auth_codes` (
+  `id` varchar(100) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `client_id` int(10) UNSIGNED NOT NULL,
+  `scopes` text DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_clients`
+--
+
+CREATE TABLE `oauth_clients` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `name` varchar(191) NOT NULL,
+  `secret` varchar(100) NOT NULL,
+  `redirect` text NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_personal_access_clients`
+--
+
+CREATE TABLE `oauth_personal_access_clients` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `client_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_refresh_tokens`
+--
+
+CREATE TABLE `oauth_refresh_tokens` (
+  `id` varchar(100) NOT NULL,
+  `access_token_id` varchar(100) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_ptps`
+--
+
+CREATE TABLE `page_ptps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `ship_id` bigint(20) NOT NULL,
+  `history_ship_id` bigint(20) NOT NULL,
+  `last_sent_destination` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `subject` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filename_chr` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) NOT NULL,
+  `token` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -442,7 +754,7 @@ INSERT INTO `ships` (`id`, `name`, `type`, `long`, `owner`, `call_sign`, `ship_i
 (23, 'Michiko', NULL, NULL, 'PT. Mammiri Line', NULL, '01224727SKY3AB0', 'APACRB6', '2024-11-26 17:08:37', '2023-07-24 00:10:11', '2024-11-27 00:10:21', NULL, 1, NULL),
 (24, 'PRIMA STAR 03', NULL, NULL, 'PT. Pelayaran Grogol Sarana Utama', NULL, '01225091SKYF1CC', 'APACRB5', '2024-02-25 19:37:16', '2023-07-24 00:10:11', '2024-02-25 19:40:05', NULL, 1, NULL),
 (25, 'Azalia', NULL, NULL, 'PT. Hanlyn Jaya Mandiri', NULL, '01230980SKYE8D1', 'APACRB5', '2024-11-28 19:49:50', '2023-07-24 00:10:11', '2024-11-29 02:50:19', NULL, 1, NULL),
-(26, 'Bangun Sejati', NULL, NULL, 'PT. Mammiri Line', NULL, '01230981SKY6CD6', 'APACRB5', '2024-11-28 19:50:56', '2023-07-24 00:10:11', '2024-11-29 02:55:22', NULL, 1, NULL),
+(26, 'Bangun Sejati', NULL, NULL, 'PT. Mammiri Line', NULL, '01230981SKY6CD6', 'IOERB14', '2024-11-29 04:53:40', '2023-07-24 00:10:11', '2024-11-29 11:55:19', NULL, 1, NULL),
 (27, 'Gas Althea', NULL, NULL, 'Mammiri Line', 'YDXI2', '01234536SKYBE45', 'APACRB5', '2024-11-05 04:29:42', '2023-07-24 00:10:11', '2024-11-05 11:30:49', NULL, 1, NULL),
 (28, 'Ex. Massa Jaya', NULL, NULL, 'Harita', NULL, '01234544SKYDE6D', 'APACRB5', '2024-09-11 23:59:50', '2023-07-24 00:10:11', '2024-10-25 16:37:47', NULL, 1, NULL),
 (29, 'Grace Harmony', NULL, NULL, 'Mammiri Line', NULL, '01234545SKY6272', 'APACRB5', '2024-08-01 21:08:50', '2023-07-24 00:10:11', '2024-08-02 04:10:17', NULL, 1, NULL),
@@ -748,6 +1060,144 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `remember_token`, `cr
 --
 
 --
+-- Indexes for table `distributors`
+--
+ALTER TABLE `distributors`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `distributor_fk_706063` (`distributor_id`);
+
+--
+-- Indexes for table `distributor_manager`
+--
+ALTER TABLE `distributor_manager`
+  ADD KEY `distributor_id_fk_686822` (`distributor_id`),
+  ADD KEY `manager_id_fk_686822` (`manager_id`);
+
+--
+-- Indexes for table `distributor_user`
+--
+ALTER TABLE `distributor_user`
+  ADD KEY `distributor_id_fk_686844` (`distributor_id`),
+  ADD KEY `user_id_fk_686844` (`user_id`);
+
+--
+-- Indexes for table `email_alert_terminal`
+--
+ALTER TABLE `email_alert_terminal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `email_destinations`
+--
+ALTER TABLE `email_destinations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `email_send_pertaminas`
+--
+ALTER TABLE `email_send_pertaminas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `email_terminal`
+--
+ALTER TABLE `email_terminal`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email_terminal_terminal_id_foreign` (`terminal_id`);
+
+--
+-- Indexes for table `email_user`
+--
+ALTER TABLE `email_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email_user_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `history_ships`
+--
+ALTER TABLE `history_ships`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indexes for table `managers`
+--
+ALTER TABLE `managers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `manager_fk_706063` (`manager_id`);
+
+--
+-- Indexes for table `manager_user`
+--
+ALTER TABLE `manager_user`
+  ADD KEY `manager_id_fk_686825` (`manager_id`),
+  ADD KEY `user_id_fk_686825` (`user_id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_access_tokens`
+--
+ALTER TABLE `oauth_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_auth_codes`
+--
+ALTER TABLE `oauth_auth_codes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_clients_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_personal_access_clients_client_id_index` (`client_id`);
+
+--
+-- Indexes for table `oauth_refresh_tokens`
+--
+ALTER TABLE `oauth_refresh_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
+
+--
+-- Indexes for table `page_ptps`
+--
+ALTER TABLE `page_ptps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
 -- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
@@ -823,6 +1273,90 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `distributors`
+--
+ALTER TABLE `distributors`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `email_alert_terminal`
+--
+ALTER TABLE `email_alert_terminal`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `email_destinations`
+--
+ALTER TABLE `email_destinations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `email_send_pertaminas`
+--
+ALTER TABLE `email_send_pertaminas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `email_terminal`
+--
+ALTER TABLE `email_terminal`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `email_user`
+--
+ALTER TABLE `email_user`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `history_ships`
+--
+ALTER TABLE `history_ships`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `managers`
+--
+ALTER TABLE `managers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `page_ptps`
+--
+ALTER TABLE `page_ptps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
@@ -861,6 +1395,51 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `distributors`
+--
+ALTER TABLE `distributors`
+  ADD CONSTRAINT `distributor_fk_706063` FOREIGN KEY (`distributor_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `distributor_manager`
+--
+ALTER TABLE `distributor_manager`
+  ADD CONSTRAINT `distributor_id_fk_686822` FOREIGN KEY (`distributor_id`) REFERENCES `distributors` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `manager_id_fk_686822` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `distributor_user`
+--
+ALTER TABLE `distributor_user`
+  ADD CONSTRAINT `distributor_id_fk_686844` FOREIGN KEY (`distributor_id`) REFERENCES `distributors` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_id_fk_686844` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `email_terminal`
+--
+ALTER TABLE `email_terminal`
+  ADD CONSTRAINT `email_terminal_terminal_id_foreign` FOREIGN KEY (`terminal_id`) REFERENCES `terminals` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `email_user`
+--
+ALTER TABLE `email_user`
+  ADD CONSTRAINT `email_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `managers`
+--
+ALTER TABLE `managers`
+  ADD CONSTRAINT `manager_fk_706063` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `manager_user`
+--
+ALTER TABLE `manager_user`
+  ADD CONSTRAINT `manager_id_fk_686825` FOREIGN KEY (`manager_id`) REFERENCES `managers` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_id_fk_686825` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `permission_role`
