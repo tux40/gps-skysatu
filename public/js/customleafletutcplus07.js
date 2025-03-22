@@ -62,23 +62,63 @@ $(document).ready(function () {
     $(".datepicker.startDate").datepicker("setDate", startDate);
     $(".datepicker.endDate").datepicker("setDate", endDate);
 
+    // $("#setDate").click(function () {
+    //     endDate = $(".datepicker.endDate").datepicker("getDate");
+    //     startDate = $(".datepicker.startDate").datepicker("getDate");
+    //     console.log('endate',endDate)
+    //     console.log('stardate',startDate)
+    //     $("div.inner-table").closest("tr").remove();
+    //     $('input[type=checkbox]').prop('checked',false);
+    //     for (let terminalId in locations) {
+    //         let message = locations[terminalId];
+    //         console.log('click4')
+    //         if (message.path) {
+    //             message.path.remove();
+    //             $.each(message.historiesMarkers, function (i, marker) {
+    //                 markersHistory.removeLayer(marker);
+    //             });
+    //             delete message.historiesMarkers;
+    //             delete message.path;
+    //         }
+    //     }
+    // });
     $("#setDate").click(function () {
         endDate = $(".datepicker.endDate").datepicker("getDate");
         startDate = $(".datepicker.startDate").datepicker("getDate");
+        console.log('endate', endDate);
+        console.log('stardate', startDate);
+
+        // Clear table rows and checkboxes
         $("div.inner-table").closest("tr").remove();
-        $('input[type=checkbox]').prop('checked',false);
+        $('input[type=checkbox]').prop('checked', false);
+
+        // Iterate over locations
         for (let terminalId in locations) {
             let message = locations[terminalId];
+            console.log('click4');
+
             if (message.path) {
+                // Remove path
                 message.path.remove();
-                $.each(message.historiesMarkers, function (i, marker) {
-                    markersHistory.removeLayer(marker);
-                });
-                delete message.historiesMarkers;
-                delete message.path;
             }
+
+            // Remove history markers if they exist
+            if (message.historiesMarkers && Array.isArray(message.historiesMarkers)) {
+                message.historiesMarkers.forEach(marker => {
+                    if (marker) { // Check if marker is valid
+                        markersHistory.removeLayer(marker);
+                    } else {
+                        console.warn('Invalid marker found:', marker);
+                    }
+                });
+            }
+
+            // Clean up message properties
+            delete message.historiesMarkers;
+            delete message.path;
         }
     });
+
 
     function getTimeDifference(fromDate) {
         if (!fromDate) {
@@ -187,7 +227,7 @@ $(document).ready(function () {
             doubleClickZoom: false,
             center: [0, 118.8230631], zoom: 5
         });
-        L.tileLayer('https://tile.osm.ch/switzerland/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mapHistory);
 
@@ -232,7 +272,7 @@ $(document).ready(function () {
                         getDataHistoryShip = getDataHistoryShip + '<tr class="header2" style="background-color: #023342; color:#fff;"><td colspan="2" style ="height:19px; padding-left:5px; font-weight: 550;"> Unassigned Manager</td></tr>';
                     }
                     for (const j in data[i]) {
-                        
+
                         if (j === "") {
                             damaskus = 'Unassigned Users';
                         } else {
@@ -350,18 +390,18 @@ $(document).ready(function () {
     function showInfoPopUp(message) {
         if ((message.latitude * 1).toFixed(4) >= 0)  {
         let name = message.name ? message.name.toUpperCase() : message.id;
-        let content = "<p><strong><u>" + name + "</u></strong></p>" +
+        let content = "<h1><strong><u>" + name + "</u></strong></h1>" +
             "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
             "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " N&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
             "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
             "<p><strong>Heading</strong>: " + (message.heading * 1).toFixed(1) + "&deg;</p>";
 
         return content;
-        
+
         }
         else {
         let name = message.name ? message.name.toUpperCase() : message.id;
-        let content = "<p><strong><u>" + name + "</u></strong></p>" +
+        let content = "<h3><strong><u>" + name + "</u></strong></h3>" +
             "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
             "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " S&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
             "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
@@ -599,7 +639,7 @@ $(document).ready(function () {
             //centerLeafletMapOnMarker(locations[id].latitude, locations[id].longitude);
             //getMarkerWithIds(id);
             //filterMarkers[id].openPopup();
-            
+
         //} else {
             //deleteMarkerWithIds(id);
         //}
@@ -723,6 +763,7 @@ $(document).ready(function () {
     });
 
     function showHistories(terminalId) {
+        console.log('search')
         let selectedTR = $("#history_table tr.row").has("input:checkbox[value=" + terminalId + "]");
 
         if (selectedTR.next().length > 0 && !(selectedTR.next().hasClass("row") || selectedTR.next().hasClass("header2") || selectedTR.next().hasClass("header"))) {
@@ -730,8 +771,12 @@ $(document).ready(function () {
         }
 
         selectedTR.addClass("checked");
+
+
         let histories_html = "<tr><td></td><td><div class=\"inner-table\" id='" + terminalId + "' style='line-height: 23px;'>";
         $.each(locations[terminalId].histories, function (i, history) {
+            console.log('i',i)
+            console.log('history',history)
             let nextDay = new Date(endDate);
             nextDay.setDate(endDate.getDate() + 1);
             let timeShip = Date.parse(history['message_utc']) + 7 * 60 * 60 * 1000;
@@ -752,6 +797,8 @@ $(document).ready(function () {
 
             if (timeShip > startDate.getTime() && timeShip < nextDay.getTime() && typeof (latitude) !== 'undefined'
                 && typeof (longitude) !== 'undefined') {
+
+                console.log('ada',selectedTR)
                 histories_html += "<div class=\"inner-table-row\" data-id='" + history['history_ids'] +  "' data-name='" + i  +  "' data-value='" + history['ship_ids'] + "'>";
                 // histories_html += '<div class="inner-table-icon-cell"><input type="checkbox" name="' + i + '" value="' + history['ship_ids'] + '"/></div>';
                 histories_html += "<div class=\"inner-table-icon-cell\"></div>";
@@ -760,11 +807,21 @@ $(document).ready(function () {
                 histories_html += "<div>" + (speed * 1).toFixed(1) + " knots</div>";
                 histories_html += "</div>";
             }
+
+
         });
         histories_html += "</div></td></tr>";
 
         selectedTR.after(histories_html);
+
+
+
+
     }
+
+
+
+
 
     function createPath(terminalId) {
         let histories = locations[terminalId].histories;
@@ -850,7 +907,7 @@ $(document).ready(function () {
                         $('.inner-table-row[data-id="' + history['history_ids']+ '"]').addClass('selected');
                         centerLeafletMapHistoriesOnMarker(latitude, longitude);
                         this.openPopup();
-                    }); 
+                    });
                     markersHistory.addLayer(markerHistory);
                     centerLeafletMapHistoriesOnMarker(latitude, longitude);
                     markerHistory.openPopup();
@@ -889,6 +946,7 @@ $(document).ready(function () {
     }
 
     function removeHistories(terminalId) {
+        console.log('click2')
         let selectedTR = $("#history_table tr.row").has("input:checkbox[value=" + terminalId + "]");
 
         if (selectedTR.next().hasClass("row")) {
@@ -900,9 +958,72 @@ $(document).ready(function () {
         selectedTR.next().remove();
     }
 
+    // $(document).on("click", "#history_table tbody tr.row input:checked", function () {
+    //     //alert("I am an alert box!");
+    //     console.log('click1')
+    //         $('#myDIV').show();
+    // });
+    //
+    // $(document).on("click", "#history_table tbody tr.row input:checkbox", function () {
+    //     let id = $(this).val();
+    //     let selectedMessage = locations[id];
+    //
+    //     if (selectedMessage) {
+    //         if (!selectedMessage.path) {
+    //             if (selectedMessage.histories) {
+    //                 showHistories(id);
+    //                 createPath(id);
+    //                 console.log('yuk')
+    //                 $('#myDIV').hide(id);
+    //             } else {
+    //                 let terminal_messages_url = "/admin/getDataHistoryShipById/" + id;
+    //                 $.getJSON(terminal_messages_url, function (data) {
+    //                     if (data.length > 0) {
+    //                         let terminalId = data[0].ship_ids;
+    //                         locations[terminalId].histories = data;
+    //                         console.log('remove')
+    //                         showHistories(id);
+    //                         createPath(terminalId);
+    //                         $('#myDIV').hide(id);
+    //                     }
+    //                 });
+    //             }
+    //         } else {
+    //             let checked = $(this).is(":checked");
+    //             $('#myDIV').hide(id);
+    //             selectedMessage.path.remove(checked);
+    //             $.each(selectedMessage.historiesMarkers, function (i, marker) {
+    //
+    //                     markersHistory.removeLayer(marker);
+    //             });
+    //
+    //             if (checked) {
+    //                 showHistories(id);
+    //                 createPath(id);
+    //                 //move(terminalId);
+    //             } else {
+    //                 removeHistories(id);
+    //             }
+    //         }
+    //     }
+    // });
+    //
+    // $(document).on("click", "#history_table tbody tr.row", function () {
+    //     let id = $("input:checked", this).val();
+    //     console.log('click3')
+    //     let selectedMessage = locations[id];
+    //     if (selectedMessage) {
+    //         if (selectedMessage.path) {
+    //             centerLeafletMapHistoriesOnMarker(locations[id].latitude, locations[id].longitude);
+    //             selectedMessage.historiesMarkers[selectedMessage.historiesMarkers.length - 1].openPopup();
+    //             $('#myDIV').hide();
+    //         }
+    //     }
+    // });
+
     $(document).on("click", "#history_table tbody tr.row input:checked", function () {
-        //alert("I am an alert box!");
-            $('#myDIV').show(); 
+        console.log('click1');
+        $('#myDIV').show();
     });
 
     $(document).on("click", "#history_table tbody tr.row input:checkbox", function () {
@@ -914,6 +1035,7 @@ $(document).ready(function () {
                 if (selectedMessage.histories) {
                     showHistories(id);
                     createPath(id);
+                    console.log('yuk');
                     $('#myDIV').hide(id);
                 } else {
                     let terminal_messages_url = "/admin/getDataHistoryShipById/" + id;
@@ -921,6 +1043,7 @@ $(document).ready(function () {
                         if (data.length > 0) {
                             let terminalId = data[0].ship_ids;
                             locations[terminalId].histories = data;
+                            console.log('remove');
                             showHistories(id);
                             createPath(terminalId);
                             $('#myDIV').hide(id);
@@ -930,11 +1053,20 @@ $(document).ready(function () {
             } else {
                 let checked = $(this).is(":checked");
                 $('#myDIV').hide(id);
-                selectedMessage.path.remove(checked);
-                $.each(selectedMessage.historiesMarkers, function (i, marker) {
-                    
-                        markersHistory.removeLayer(marker);
-                });
+
+                if (selectedMessage.path) {
+                    selectedMessage.path.remove(); // Remove path if it exists
+                }
+
+                if (selectedMessage.historiesMarkers && Array.isArray(selectedMessage.historiesMarkers)) {
+                    $.each(selectedMessage.historiesMarkers, function (i, marker) {
+                        if (marker) { // Check if marker is valid before removing
+                            markersHistory.removeLayer(marker);
+                        } else {
+                            console.warn('Invalid marker in historiesMarkers:', marker);
+                        }
+                    });
+                }
 
                 if (checked) {
                     showHistories(id);
@@ -949,11 +1081,18 @@ $(document).ready(function () {
 
     $(document).on("click", "#history_table tbody tr.row", function () {
         let id = $("input:checked", this).val();
+        console.log('click3');
         let selectedMessage = locations[id];
+
         if (selectedMessage) {
             if (selectedMessage.path) {
                 centerLeafletMapHistoriesOnMarker(locations[id].latitude, locations[id].longitude);
-                selectedMessage.historiesMarkers[selectedMessage.historiesMarkers.length - 1].openPopup();
+                if (
+                    selectedMessage.historiesMarkers &&
+                    selectedMessage.historiesMarkers.length > 0
+                ) {
+                    selectedMessage.historiesMarkers[selectedMessage.historiesMarkers.length - 1].openPopup();
+                }
                 $('#myDIV').hide();
             }
         }

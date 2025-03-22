@@ -150,7 +150,7 @@ $(document).ready(function () {
             center: [0, 118.8230631], zoom: 5
         });
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
@@ -187,7 +187,7 @@ $(document).ready(function () {
             doubleClickZoom: false,
             center: [0, 118.8230631], zoom: 5
         });
-        L.tileLayer('https://tile.osm.ch/switzerland/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mapHistory);
 
@@ -232,7 +232,7 @@ $(document).ready(function () {
                         getDataHistoryShip = getDataHistoryShip + '<tr class="header2" style="background-color: #023342; color:#fff;"><td colspan="2" style ="height:19px; padding-left:5px; font-weight: 550;"> Unassigned Manager</td></tr>';
                     }
                     for (const j in data[i]) {
-                        
+
                         if (j === "") {
                             damaskus = 'Unassigned Users';
                         } else {
@@ -357,7 +357,7 @@ $(document).ready(function () {
             "<p><strong>Heading</strong>: " + (message.heading * 1).toFixed(1) + "&deg;</p>";
 
         return content;
-        
+
         }
         else {
         let name = message.name ? message.name.toUpperCase() : message.id;
@@ -599,7 +599,7 @@ $(document).ready(function () {
             //centerLeafletMapOnMarker(locations[id].latitude, locations[id].longitude);
             //getMarkerWithIds(id);
             //filterMarkers[id].openPopup();
-            
+
         //} else {
             //deleteMarkerWithIds(id);
         //}
@@ -850,7 +850,7 @@ $(document).ready(function () {
                         $('.inner-table-row[data-id="' + history['history_ids']+ '"]').addClass('selected');
                         centerLeafletMapHistoriesOnMarker(latitude, longitude);
                         this.openPopup();
-                    }); 
+                    });
                     markersHistory.addLayer(markerHistory);
                     centerLeafletMapHistoriesOnMarker(latitude, longitude);
                     markerHistory.openPopup();
@@ -902,7 +902,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#history_table tbody tr.row input:checked", function () {
         //alert("I am an alert box!");
-            $('#myDIV').show(); 
+            $('#myDIV').show();
     });
 
     $(document).on("click", "#history_table tbody tr.row input:checkbox", function () {
@@ -932,7 +932,7 @@ $(document).ready(function () {
                 $('#myDIV').hide(id);
                 selectedMessage.path.remove(checked);
                 $.each(selectedMessage.historiesMarkers, function (i, marker) {
-                    
+
                         markersHistory.removeLayer(marker);
                 });
 

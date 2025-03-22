@@ -1,4 +1,4 @@
-<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: Arial, Helvetica, sans-serif;">
+<div class="collapse navbar-collapse " id="navbarSupportedContent" style="font-family: Arial, Helvetica, sans-serif;">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
             <a href="{{ route("admin.home") }}" class="nav-link">
@@ -158,24 +158,24 @@
         </ul>
       </li>-->
 
-            @can('setting_access')
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-expanded="false">
-                        {{ trans('cruds.setting.title') }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{{ route("admin.change-timezone") }}"
-                               class="dropdown-item">
-                                <i class="fa fa-clock nav-icon">
+{{--            @can('setting_access')--}}
+{{--                <li class="nav-item dropdown active">--}}
+{{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"--}}
+{{--                       data-toggle="dropdown"--}}
+{{--                       aria-expanded="false">--}}
+{{--                        {{ trans('cruds.setting.title') }}--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--                            <a href="{{ route("admin.change-timezone") }}"--}}
+{{--                               class="dropdown-item">--}}
+{{--                                <i class="fa fa-clock nav-icon">--}}
 
-                                </i>
-                                TimeZone
-                            </a>
-                    </div>
-                </li>
-            @endcan
+{{--                                </i>--}}
+{{--                                TimeZone--}}
+{{--                            </a>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
+{{--            @endcan--}}
 
             <li class="nav-item active">
                 <a href="#" class="nav-link"

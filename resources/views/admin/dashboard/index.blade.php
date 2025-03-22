@@ -4,7 +4,9 @@
     <meta http-equiv="refresh" content="1800">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!--<link rel="stylesheet" type="text/css" href="{{asset('css/leaflet.css') }}"/>-->
@@ -158,23 +160,25 @@
     </div>
 </div>
 
-<div class="alert alert-success alert-dismissible" id="myDIV" style="position: absolute;
-top: 1%; width: 100%; height: 99%; z-index: 6; background-color: #000; opacity: 0.8; filter: alpha(opacity=80); text-align: center; display: none;">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-   <img src="/images/loder.gif" alt="loading" width="90" height="88" style="margin-top: 18%">
-</div>
+{{--<div class="alert alert-success alert-dismissible" id="myDIV" style="position: absolute;--}}
+{{--top: 1%; width: 100%; height: 99%; z-index: 6; background-color: #000; opacity: 0.8; filter: alpha(opacity=80); text-align: center; display: none;">--}}
+{{--  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--}}
+{{--   <img src="/images/loder.gif" alt="loading" width="90" height="88" style="margin-top: 18%">--}}
+{{--</div>--}}
 
 <div id="floating-panel">
     <div class="close">
         <i class="fa fa-angle-double-left"></i>
     </div>
-    <section>
+    <section >
         <div class="tabs tabs-style-linebox">
             <nav>
                 <ul style="position: fixed; z-index: 1; background-color: #fff; width: 268px; height: 60px;">
                     <li id="tab-track" class="tab-current"><a href="#section-linebox-1"><span style="Arial, Helvetica, sans-serif;">Track</span></a></li>
                     <li id="tab-history"><a href="#section-linebox-2"><span style="font-family:Arial, Helvetica, sans-serif;">History</span></a></li>
+
                 </ul>
+
             </nav>
             <div class="content-wrap">
                 <section id="section-linebox-1" class="content-current">
@@ -245,83 +249,83 @@ top: 1%; width: 100%; height: 99%; z-index: 6; background-color: #000; opacity: 
 <script src="{{ asset('js/leaflet.draw.js') }}"></script>
 <script src="{{ asset('js/leaflet-providers.js') }}"></script>
 
-@if (Auth::user()->timezone == 'UTC-12') 
+@if (Auth::user()->timezone == 'UTC-12')
 <script src="{{ asset('js/customleafletutcmin12.js') }}?v={{  now()  }}"></script>
 
-@elseif (Auth::user()->timezone == 'UTC-11') 
-<script src="{{ asset('js/customleafletutcmin11.js') }}?v={{  now()  }}"></script>   
+@elseif (Auth::user()->timezone == 'UTC-11')
+<script src="{{ asset('js/customleafletutcmin11.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-10')
-<script src="{{ asset('js/customleafletutcmin10.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin10.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-09')
-<script src="{{ asset('js/customleafletutcmin09.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin09.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-08')
-<script src="{{ asset('js/customleafletutcmin08.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin08.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-07')
-<script src="{{ asset('js/customleafletutcmin07.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin07.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-06')
-<script src="{{ asset('js/customleafletutcmin06.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin06.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-05')
-<script src="{{ asset('js/customleafletutcmin05.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin05.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-04')
-<script src="{{ asset('js/customleafletutcmin04.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin04.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-03')
-<script src="{{ asset('js/customleafletutcmin03.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin03.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-02')
-<script src="{{ asset('js/customleafletutcmin02.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin02.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC-01')
-<script src="{{ asset('js/customleafletutcmin01.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcmin01.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC')
-<script src="{{ asset('js/customleafletutc.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutc.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+01')
-<script src="{{ asset('js/customleafletutcplus01.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus01.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+02')
-<script src="{{ asset('js/customleafletutcplus02.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus02.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+03')
-<script src="{{ asset('js/customleafletutcplus03.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus03.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+04')
-<script src="{{ asset('js/customleafletutcplus04.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus04.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+05')
-<script src="{{ asset('js/customleafletutcplus05.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus05.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+06')
-<script src="{{ asset('js/customleafletutcplus06.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus06.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+07')
-<script src="{{ asset('js/customleafletutcplus07.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus07.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+08')
-<script src="{{ asset('js/customleafletutcplus08.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus08.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+09')
-<script src="{{ asset('js/customleafletutcplus09.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus09.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+10')
-<script src="{{ asset('js/customleafletutcplus10.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus10.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+11')
-<script src="{{ asset('js/customleafletutcplus11.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus11.js') }}?v={{  now()  }}"></script>
 
 @elseif (Auth::user()->timezone == 'UTC+12')
-<script src="{{ asset('js/customleafletutcplus12.js') }}?v={{  now()  }}"></script>   
+<script src="{{ asset('js/customleafletutcplus12.js') }}?v={{  now()  }}"></script>
 
-@elseif (Auth::user()->timezone == '') 
-<script src="{{ asset('js/customleaflet.js') }}?v={{  now()  }}"></script>  
+@elseif (Auth::user()->timezone == '')
+<script src="{{ asset('js/customleaflet.js') }}?v={{  now()  }}"></script>
 
 @endif
 

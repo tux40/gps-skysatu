@@ -232,7 +232,7 @@ $(document).ready(function () {
                         getDataHistoryShip = getDataHistoryShip + '<tr class="header2" style="background-color: #023342; color:#fff;"><td colspan="2" style ="height:19px; padding-left:5px; font-weight: 550;"> Unassigned Manager</td></tr>';
                     }
                     for (const j in data[i]) {
-                        
+
                         if (j === "") {
                             damaskus = 'Unassigned Users';
                         } else {
@@ -350,18 +350,18 @@ $(document).ready(function () {
     function showInfoPopUp(message) {
         if ((message.latitude * 1).toFixed(4) >= 0)  {
         let name = message.name ? message.name.toUpperCase() : message.id;
-        let content = "<p><strong><u>" + name + "</u></strong></p>" +
+        let content = "<h1><strong><u>" + name + "</u></strong></h1>" +
             "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
             "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " N&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
             "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
             "<p><strong>Heading</strong>: " + (message.heading * 1).toFixed(1) + "&deg;</p>";
 
         return content;
-        
+
         }
         else {
         let name = message.name ? message.name.toUpperCase() : message.id;
-        let content = "<p><strong><u>" + name + "</u></strong></p>" +
+        let content = "<h1><strong><u>" + name + "</u></strong></h1>" +
             "<p><strong>Last:</strong> " + $.format.date(new Date(message.eventTime), "dd.MM.yyyy HH:mm:ss") + "</p>" +
             "<p><strong>Position:</strong> " + (message.latitude * 1).toFixed(4) + " S&nbsp;&nbsp;" + (message.longitude * 1).toFixed(4) + " E</p>" +
             "<p><strong>Speed:</strong> " + (message.speed * 1).toFixed(1) + " knots</p>" +
@@ -599,7 +599,7 @@ $(document).ready(function () {
             //centerLeafletMapOnMarker(locations[id].latitude, locations[id].longitude);
             //getMarkerWithIds(id);
             //filterMarkers[id].openPopup();
-            
+
         //} else {
             //deleteMarkerWithIds(id);
         //}
@@ -850,7 +850,7 @@ $(document).ready(function () {
                         $('.inner-table-row[data-id="' + history['history_ids']+ '"]').addClass('selected');
                         centerLeafletMapHistoriesOnMarker(latitude, longitude);
                         this.openPopup();
-                    }); 
+                    });
                     markersHistory.addLayer(markerHistory);
                     centerLeafletMapHistoriesOnMarker(latitude, longitude);
                     markerHistory.openPopup();
@@ -902,7 +902,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#history_table tbody tr.row input:checked", function () {
         //alert("I am an alert box!");
-            $('#myDIV').show(); 
+            $('#myDIV').show();
     });
 
     $(document).on("click", "#history_table tbody tr.row input:checkbox", function () {
@@ -932,7 +932,7 @@ $(document).ready(function () {
                 $('#myDIV').hide(id);
                 selectedMessage.path.remove(checked);
                 $.each(selectedMessage.historiesMarkers, function (i, marker) {
-                    
+
                         markersHistory.removeLayer(marker);
                 });
 
@@ -1116,6 +1116,7 @@ $(document).ready(function () {
         let name = $(this).attr("name");
         let selectedMessage = locations[id];
         let checked = $(this).is(":checked");
+        console.log('klicked2')
         if (selectedMessage) {
             if (selectedMessage.path) {
                 if (checked) {

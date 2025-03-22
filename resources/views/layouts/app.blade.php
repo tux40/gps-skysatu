@@ -14,7 +14,9 @@
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/all.css') }}" rel="stylesheet"/>
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/dropzone.min.css') }}" rel="stylesheet"/>
