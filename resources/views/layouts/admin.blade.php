@@ -151,8 +151,9 @@
 
 {{--</nav>--}}
 <nav class="navbar  navbar-expand-lg navbar-light bg-white" >
-    <a class="navbar-brand" href="/" style="padding-right: 130px; padding-left: 20px;" >
-        {{ trans('panel.site_title') }}
+    <a class="navbar-brand" href="/" style="padding-right: 130px; margin-top:1.5rem" >
+        <img src="{{ asset('images/logo-s1.jpg') }}" alt="Logo" style="height: 40px; width: auto;margin-left:-5px;">
+        S A T
     </a>
     <button class="navbar-toggler mr-auto mr-lg-auto mr-md-auto mr-xl-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

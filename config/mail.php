@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.skysat.co.id'),
+//    'host' => env('MAIL_HOST', 'smtp.skysat.co.id'),
     /*'host' => env('MAIL_HOST', 'smtp.mailgun.org'),*/
 
     /*
@@ -43,7 +43,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+//    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,10 +56,10 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'ptptrack@skysat.co.id'),
-        'name' => env('MAIL_FROM_NAME', 'ptptrack@skysat.co.id'),
-    ],
+//    'from' => [
+//        'address' => env('MAIL_FROM_ADDRESS', 'ptptrack@skysat.co.id'),
+//        'name' => env('MAIL_FROM_NAME', 'ptptrack@skysat.co.id'),
+//    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+//    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -88,9 +88,9 @@ return [
    /* 'username' => env('MAIL_USERNAME'),
 
     'password' => env('MAIL_PASSWORD'), */
-    'username' => env('MAIL_USERNAME', 'ptptrack@skysat.co.id'),
-
-    'password' => env('MAIL_PASSWORD', 'Skysatu@@2021'), 
+//    'username' => env('MAIL_USERNAME', 'ptptrack@skysat.co.id'),
+//
+//    'password' => env('MAIL_PASSWORD', 'Skysatu@@2021'),
 
     /*
     |--------------------------------------------------------------------------
@@ -138,7 +138,7 @@ return [
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
     'to' => env('MAIL_PERTAMINA'),
-    
+
     'stream' => [
         'ssl' => [
            'allow_self_signed' => true,
@@ -146,8 +146,8 @@ return [
            'verify_peer_name' => false,
         ],
      ],
-    
-    
+
+
 
 
 
