@@ -1,4 +1,4 @@
-name:  deployment
+name:  deployment-eben
 # Trigger this workflow on pushes to the specified branch
 on:
   push:
